@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,11 +22,10 @@ import org.springframework.stereotype.Component;
 @Table(name = "test")
 public class Vehicle {
     @Id
-    @NotNull
     private int id;
 
     @NotNull
-    private int uic;
+    private long uic;
 
     @NotNull
     private int length;
