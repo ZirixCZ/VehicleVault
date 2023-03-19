@@ -7,23 +7,43 @@ let uic = document.getElementById("uicInput");
 let length = document.getElementById("lengthInput");
 let maxspeed = document.getElementById("speedInput");
 
-submitBtn.addEventListener("click", function () {
-  addVehicle(uic, length, maxspeed);
+let fileUpload = document.getElementById("fileInput");
+
+submitBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  const vehicle = [
+    { uic: uic.value, length: length.value, maxspeed: maxspeed.value },
+  ];
+  addVehicle(vehicle);
 });
 
-function addVehicle(uic, length, maxspeed) {
-  const vehicle = {
-    uic: uic.value,
-    length: length.value,
-    maxspeed: maxspeed.value,
+fileUpload.addEventListener("change", function (event) {
+  var reader = new FileReader();
+
+  reader.onload = function (event) {
+    var jsonObj = JSON.parse(event.target.result);
+    addVehicle(jsonObj);
   };
+
+  reader.readAsText(event.target.files[0]);
+});
+
+function addVehicle(vehicle) {
+  for (let i = 0; i < vehicles.length; i++) {
+    if (
+      vehicles[i].uic === "" ||
+      vehicles[i].length === "" ||
+      vehicles[i].maxspeed === ""
+    )
+      return;
+  }
 
   fetch("http://127.0.0.1:8080/vehicle", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify([vehicle]),
+    body: JSON.stringify(vehicle),
   })
     .then((response) => response.json())
     .then((data) => {
