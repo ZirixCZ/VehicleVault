@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>VehicleVault</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+            <div id="fetchContainer">
+      <table id="vehicleList"></table>
+      <button type="button" class="btn btn-primary" id="fetch">fetch</button>
+            </div>
+            <div>
+         <div class="form-group">
+    <label for="exampleInputEmail1">uic</label>
+    <input type="number" class="form-control" id="uicInput" placeholder="123456789012">
+    <small id="uicHelp" class="form-text text-muted">12 characters long valid UIC</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">length</label>
+    <input type="number" class="form-control" id="lengthInput" placeholder="meters">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">max. speed</label>
+    <input type="number" class="form-control" id="speedInput" placeholder="km/h">
+  </div>
+  <button type="submit" class="btn btn-primary" id="addVehicleBtn">Submit</button>
+            </div>
+</form>
+    </div>
+  </body>
+  <script src="index.js"></script>
+</html>
