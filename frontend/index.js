@@ -5,7 +5,7 @@ let fetchBtn = document.getElementById("fetch");
 let submitBtn = document.getElementById("addVehicleBtn");
 let uic = document.getElementById("uicInput");
 let length = document.getElementById("lengthInput");
-let maxspeed = document.getElementById("uicInput");
+let maxspeed = document.getElementById("speedInput");
 
 submitBtn.addEventListener("click", function () {
   addVehicle(uic, length, maxspeed);
