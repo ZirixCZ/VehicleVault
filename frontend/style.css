@@ -48,3 +48,9 @@ body {
   background-color: #04aa6d;
   color: white;
 }
+
+form {
+  display: flex;
+  row-gap: 3rem;
+  gap: 3rem;
+}

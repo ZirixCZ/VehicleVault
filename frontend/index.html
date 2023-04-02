@@ -15,40 +15,100 @@
       </div>
       <div>
         <form>
-          <div class="form-group needs-validation" novalidate>
-            <label for="exampleInputEmail1">uic</label>
-            <input
-              type="text"
-              class="form-control"
-              id="uicInput"
-              placeholder="123456789012"
-              required
-            />
-            <small id="uicHelp" class="form-text text-muted"
-              >12 characters long valid UIC</small
-            >
+          <div>
+            <label>Required</label>
+            <div class="form-group needs-validation" novalidate>
+              <label for="exampleInputEmail1">uic</label>
+              <input
+                type="text"
+                class="form-control"
+                id="uicInput"
+                placeholder="123456789012"
+                required
+              />
+              <small id="uicHelp" class="form-text text-muted"
+                >12 characters long valid UIC</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">length</label>
+              <input
+                type="text"
+                class="form-control"
+                id="lengthInput"
+                placeholder="meters"
+                required
+              />
+              <div class="invalid-feedback">Please fill it up correctly.</div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">max. speed</label>
+              <input
+                type="text"
+                class="form-control"
+                id="speedInput"
+                placeholder="km/h"
+                required
+              />
+            </div>
           </div>
+          <div>
+            <label>Locomotive</label>
+            <div class="form-group">
+              <label for="exampleInputPassword1">loc. type</label>
+              <input
+                type="text"
+                class="form-control"
+                id="locomotiveType"
+                placeholder="100W"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">power</label>
+              <input
+                type="text"
+                class="form-control"
+                id="power"
+                placeholder="1 000 kW"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">pull power</label>
+              <input
+                type="text"
+                class="form-control"
+                id="pullPower"
+                placeholder="1 000 kW"
+                required
+              />
+            </div>
+          </div>
+          <div>
+          <label>Wagon</label>
           <div class="form-group">
-            <label for="exampleInputPassword1">length</label>
+            <label for="exampleInputPassword1">capacity</label>
             <input
               type="text"
               class="form-control"
-              id="lengthInput"
-              placeholder="meters"
+              id="capacity"
+              placeholder="68 os."
               required
             />
-            <div class="invalid-feedback">Please choose a username.</div>
           </div>
+          <label>Cargo</label>
           <div class="form-group">
-            <label for="exampleInputPassword1">max. speed</label>
+            <label for="exampleInputPassword1">maxCarryWeight</label>
             <input
               type="text"
               class="form-control"
-              id="speedInput"
-              placeholder="km/h"
+              id="maxCarryWeight"
+              placeholder="10 000 kg"
               required
             />
           </div>
+          <div>
           <button type="submit" class="btn btn-primary" id="addVehicleBtn">
             Submit
           </button>
