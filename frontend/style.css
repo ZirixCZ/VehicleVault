@@ -5,6 +5,10 @@ body {
   padding: 0;
 }
 
+label {
+  font-weight: 400;
+}
+
 .container {
   width: 100vw;
   height: 100vh;

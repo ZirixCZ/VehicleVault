@@ -16,7 +16,7 @@
       <div>
         <form>
           <div>
-            <label>Required</label>
+           <label><b>Required</b></label>
             <div class="form-group needs-validation" novalidate>
               <label for="exampleInputEmail1">uic</label>
               <input
@@ -53,14 +53,14 @@
             </div>
           </div>
           <div>
-            <label>Locomotive</label>
+          <label><b>Locomotive</b></label>
             <div class="form-group">
               <label for="exampleInputPassword1">loc. type</label>
               <input
                 type="text"
                 class="form-control"
                 id="locomotiveType"
-                placeholder="100W"
+                placeholder="electric"
                 required
               />
             </div>
@@ -86,7 +86,7 @@
             </div>
           </div>
           <div>
-          <label>Wagon</label>
+          <label><b>Wagon</b></label>
           <div class="form-group">
             <label for="exampleInputPassword1">capacity</label>
             <input
@@ -97,7 +97,7 @@
               required
             />
           </div>
-          <label>Cargo</label>
+          <label><b>Cargo</b></label>
           <div class="form-group">
             <label for="exampleInputPassword1">maxCarryWeight</label>
             <input
@@ -112,6 +112,22 @@
           <button type="submit" class="btn btn-primary" id="addVehicleBtn">
             Submit
           </button>
+          <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="locomotiveRadio">
+                <label class="form-check-label" for="flexRadioDefault1">Locomotive</label>
+        </div>
+        <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="cargoRadio" checked>
+                <label class="form-check-label" for="flexRadioDefault2">Cargo</label>
+        </div>
+        <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="wagonRadio" checked>
+                <label class="form-check-label" for="flexRadioDefault2">Wagon</label>
+        </div>
+        <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="default" checked>
+                <label class="form-check-label" for="flexRadioDefault2">Select above</label>
+        </div>
           <div class="form-group">
             <label>or upload a file</label>
             <input
