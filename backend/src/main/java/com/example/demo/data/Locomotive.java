@@ -1,5 +1,6 @@
 package com.example.demo.data;
 
+import com.example.demo.data.Vehicle;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -11,8 +12,13 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name = "vehicle")
-public class Vehicle {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Component
+@Table(name = "locomotives")
+public class Locomotive {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +32,10 @@ public class Vehicle {
 
     @NotNull
     private int maxspeed;
+
+    private String type;
+
+    private int power;
+    
+    private int pullPower;
 }

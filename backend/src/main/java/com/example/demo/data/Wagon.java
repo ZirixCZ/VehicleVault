@@ -1,18 +1,21 @@
 package com.example.demo.data;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name = "vehicle")
-public class Vehicle {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Component
+@Table(name = "wagons")
+public class Wagon {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +29,6 @@ public class Vehicle {
 
     @NotNull
     private int maxspeed;
+
+    private int capacity;
 }
