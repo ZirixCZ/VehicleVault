@@ -7,25 +7,24 @@ Vehicle management system for railroad engineers. This demo allows you to view, 
 
 ## Component Diagram
 
-#### HTTP
-###### GET
-See all locomotives stored in the database
+### GET
+###### See all locomotives stored in the database
 
 `{{baseUri}}/fetchLocomotives`
 
-See all wagons stored in the database
+###### See all wagons stored in the database
 
 `{{baseUri}}/fetchWagons`
 
-See all cargo trains stored in the database
+###### See all cargo trains stored in the database
 
 `{{baseUri}}/fetchCargo`
 
-###### POST
+### POST
 
-Store locomotives in the database
+###### Store locomotives in the database
 
-`{{baseUri}}/fetchCargo`
+`{{baseUri}}/addLocomotive`
 Params:
 ```
 id: number
@@ -37,6 +36,29 @@ power: number
 pullPower: number
 ```
 
+###### Store cargo trains in the database
+
+`{{baseUri}}/addCargo`
+Params:
+```
+id: number
+uic: number
+maxSpeed: number
+length: number
+maxCarryWeight: number
+```
+
+###### Store cargo trains in the database
+
+`{{baseUri}}/addWagons`
+Params:
+```
+id: number
+uic: number
+maxSpeed: number
+length: number
+capacity: number
+```
 
 https://user-images.githubusercontent.com/49836430/229745384-b0970e9a-3689-47ee-9896-ed4073e9564a.mov
 
