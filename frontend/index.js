@@ -1,9 +1,12 @@
 // Hook vehicleList<table> & fetchBtn<button>
 let vehicleList = document.getElementById("vehicleList");
-let fetchBtn = document.getElementById("fetch");
+let fetchLocomotives = document.getElementById("fetchLocomotives");
+let fetchCargo = document.getElementById("fetchCargo");
+let fetchWagon = document.getElementById("fetchWagon");
 
-const callApi = (vehicle, type) =>
-  fetch(`http://127.0.0.1:8080/add${type}`, {
+const callApi = (vehicle, endpoint) => {
+  console.log(vehicle, endpoint);
+  fetch(`http://127.0.0.1:8080/add${endpoint}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -14,7 +17,7 @@ const callApi = (vehicle, type) =>
     .then((data) => {
       console.log("Success:", data);
     });
-
+};
 // Fetch values from HTML inputs
 const getValues = () => [
   {
@@ -86,6 +89,8 @@ function addVehicle(vehicle) {
     if (!vehicle[i].uic || !vehicle[i].length || !vehicle[i].maxspeed) return;
   }
 
+  let endpoint;
+  let payload = [];
   if (type.locomotive) {
     for (let i = 0; i < vehicle.length; i++) {
       if (
@@ -96,35 +101,65 @@ function addVehicle(vehicle) {
         alert("invalid locomotive");
         return;
       }
+      payload.push({
+        uic: vehicle[i].uic,
+        length: vehicle[i].length,
+        maxspeed: vehicle[i].maxspeed,
+        locomotiveType: vehicle[i].locomotiveType,
+        power: vehicle[i].power,
+        pullPower: vehicle[i].pullPower,
+      });
     }
-    callApi(JSON.stringify(vehicle), "Locomotive");
+    endpoint = "Locomotive";
   } else if (type.cargo) {
     for (let i = 0; i < vehicle.length; i++) {
       if (!vehicle[i].maxCarryWeight) {
         alert("invalid cargo");
         return;
       }
+      payload.push({
+        uic: vehicle[i].uic,
+        length: vehicle[i].length,
+        maxspeed: vehicle[i].maxspeed,
+        maxCarryWeight: vehicle[i].maxCarryWeight,
+      });
     }
-    callApi(JSON.stringify(vehicle), "Cargo");
+    endpoint = "Cargo";
   } else if (type.wagon) {
     for (let i = 0; i < vehicle.length; i++) {
       if (!vehicle[i].capacity) {
         alert("invalid wagon");
         return;
       }
+      payload.push({
+        uic: vehicle[i].uic,
+        length: vehicle[i].length,
+        maxspeed: vehicle[i].maxspeed,
+        capacity: vehicle[i].capacity,
+      });
     }
-    callApi(JSON.stringify(vehicle), "Wagon");
+    endpoint = "Wagon";
   }
+
+  callApi(JSON.stringify(payload), endpoint);
 }
 
 let vehicles = [];
 
-fetchBtn.addEventListener("click", function () {
-  fetchVehicles();
+fetchLocomotives.addEventListener("click", function () {
+  fetchVehicles("Locomotives");
 });
 
-function fetchVehicles() {
-  fetch("http://127.0.0.1:8080/fetchVehicles")
+fetchCargo.addEventListener("click", function () {
+  fetchVehicles("Cargo");
+});
+
+fetchWagon.addEventListener("click", function () {
+  fetchVehicles("Wagon");
+});
+
+function fetchVehicles(endpoint) {
+  fetch(`http://127.0.0.1:8080/fetch${endpoint}`)
     .then((response) => response.json())
     .then((data) => {
       renderVehicles(data);
