@@ -2,7 +2,7 @@
 let vehicleList = document.getElementById("vehicleList");
 let fetchLocomotives = document.getElementById("fetchLocomotives");
 let fetchCargo = document.getElementById("fetchCargo");
-let fetchWagon = document.getElementById("fetchWagon");
+let fetchWagon = document.getElementById("fetchWagons");
 
 const callApi = (vehicle, endpoint) => {
   console.log(vehicle, endpoint);
@@ -73,7 +73,14 @@ document
 
     reader.onload = function (event) {
       var jsonObj = JSON.parse(event.target.result);
-      addVehicle(jsonObj);
+      addVehicle(
+        jsonObj,
+        jsonObj.locomotiveType
+          ? "Locomotive"
+          : jsonObj.capacity
+          ? "Wagon"
+          : "Cargo"
+      );
     };
 
     reader.readAsText(event.target.files[0]);
@@ -139,6 +146,42 @@ function addVehicle(vehicle) {
       });
     }
     endpoint = "Wagon";
+  } else if (vehicle.bulkType.value === "Locomotive") {
+    for (let i = 0; i < vehicle.payload.length; i++) {
+      payload.push({
+        uic: vehicle.payload[i].uic,
+        length: vehicle.payload[i].length,
+        maxspeed: vehicle.payload[i].maxspeed,
+        locomotiveType: vehicle.payload[i].locomotiveType,
+        power: vehicle.payload[i].power,
+        pullPower: vehicle.payload[i].pullPower,
+      });
+    }
+    endpoint = "Locomotive";
+  } else if (vehicle.bulkType.value === "Wagon") {
+    for (let i = 0; i < vehicle.payload.length; i++) {
+      payload.push({
+        uic: vehicle.payload[i].uic,
+        length: vehicle.payload[i].length,
+        maxspeed: vehicle.payload[i].maxspeed,
+        locomotiveType: vehicle.payload[i].locomotiveType,
+        power: vehicle.payload[i].power,
+        pullPower: vehicle.payload[i].pullPower,
+      });
+    }
+    endpoint = "Wagons";
+  } else if (vehicle.bulkType.value === "Cargo") {
+    for (let i = 0; i < vehicle.payload.length; i++) {
+      payload.push({
+        uic: vehicle.payload[i].uic,
+        length: vehicle.payload[i].length,
+        maxspeed: vehicle.payload[i].maxspeed,
+        locomotiveType: vehicle.payload[i].locomotiveType,
+        power: vehicle.payload[i].power,
+        pullPower: vehicle.payload[i].pullPower,
+      });
+    }
+    endpoint = "Cargo";
   }
 
   callApi(JSON.stringify(payload), endpoint);
@@ -155,18 +198,18 @@ fetchCargo.addEventListener("click", function () {
 });
 
 fetchWagon.addEventListener("click", function () {
-  fetchVehicles("Wagon");
+  fetchVehicles("Wagons");
 });
 
 function fetchVehicles(endpoint) {
   fetch(`http://127.0.0.1:8080/fetch${endpoint}`)
     .then((response) => response.json())
     .then((data) => {
-      renderVehicles(data);
+      renderVehicles(data, endpoint);
     });
 }
 
-function renderVehicles(data) {
+function renderVehicles(data, endpoint) {
   vehicleList.innerHTML = "";
 
   const heading = `
@@ -174,19 +217,48 @@ function renderVehicles(data) {
          <th>uic</th>
          <th>length</th>
          <th>max. speed</th>
+                ${
+                  endpoint === "Locomotives"
+                    ? `<th>loc. type</th> 
+                       <th>power</th>
+                       <th>pull power</th>`
+                    : endpoint == "Cargo"
+                    ? `<th>max. carry weight</th>`
+                    : `<th>capacity</th>`
+                }
+
         </tr>
         `;
   vehicleList.innerHTML = heading;
 
-  data.forEach(({ uic, length, maxspeed }) => {
-    const tr = `
+  console.log(endpoint);
+  data.forEach(
+    ({
+      uic,
+      length,
+      maxspeed,
+      locomotiveType,
+      power,
+      pullPower,
+      maxCarryWeight,
+      capacity,
+    }) => {
+      const tr = `
                 <tr>
                 <td>${uic}</td>
                 <td>${length}</td>
                 <td>${maxspeed}</td>
+                  ${
+                    endpoint === "Locomotives"
+                      ? `<td>${locomotiveType}</td><td>${power}</td><td>${pullPower}</td>`
+                      : endpoint == "Cargo"
+                      ? `<td>${maxCarryWeight}</td>`
+                      : `<td>${capacity}</td>`
+                  }
                 </tr>
     `;
 
-    vehicleList.innerHTML += tr;
-  });
+      vehicleList.innerHTML += tr;
+    }
+  );
 }

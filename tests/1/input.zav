@@ -1,32 +1,34 @@
-[
 {
-        "uic": 123456789012,
-        "length": 20,
-        "maxspeed": 80
-},
-{
-        "uic": 123456789012,
-        "length": 20,
-        "maxspeed": 80
-},
-{
-        "uic": 123456789012,
-        "length": 20,
-        "maxspeed": 80
-},
-{
-        "uic": 123456789012,
-        "length": 20,
-        "maxspeed": 80
-},
-{
-        "uic": 123456789012,
-        "length": 20,
-        "maxspeed": 80
-},
-{
-        "uic": 123456789012,
-        "length": 20,
-        "maxspeed": 80
+        "bulkType":
+                {
+                        "value": "Locomotive"
+                },
+        "payload":
+                [
+
+                        {
+                                "uic": 123456789012,
+                                "length": 20,
+                                "maxspeed": 80,
+                                "locomotiveType": "electric",
+                                "power": 1000,
+                                "pullPower": 2000
+                        },
+                        {
+                                "uic": 123456789012,
+                                "length": 20,
+                                "maxspeed": 80,
+                                "locomotiveType": "electric",
+                                "power": 1000,
+                                "pullPower": 2000
+                        },
+                        {
+                                "uic": 123456789012,
+                                "length": 20,
+                                "maxspeed": 80,
+                                "locomotiveType": "electric",
+                                "power": 1000,
+                                "pullPower": 2000
+                        }
+                ]
 }
-]

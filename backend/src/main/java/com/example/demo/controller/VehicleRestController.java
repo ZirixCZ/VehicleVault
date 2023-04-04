@@ -40,8 +40,18 @@ public class VehicleRestController {
         return wagonService.saveVehicle(vehicle);
     }
 
-    @GetMapping("/fetchVehicles")
-    public List<Locomotive> fetchVehicles() {
+    @GetMapping("/fetchLocomotives")
+    public List<Locomotive> fetchLocomotives() {
         return locomotiveService.fetchVehicleList();
+    }
+
+    @GetMapping("/fetchCargo")
+    public List<Cargo> fetchCargo() {
+        return cargoService.fetchVehicleList();
+    }
+
+    @GetMapping("/fetchWagons")
+    public List<Wagon> fetchWagons() {
+        return wagonService.fetchVehicleList();
     }
 }

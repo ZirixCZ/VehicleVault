@@ -33,7 +33,7 @@ public class Locomotive {
     @NotNull
     private int maxspeed;
 
-    private String type;
+    private String locomotiveType;
 
     private int power;
     
