@@ -65,3 +65,20 @@ https://user-images.githubusercontent.com/49836430/229745384-b0970e9a-3689-47ee-
 
 https://user-images.githubusercontent.com/49836430/229745355-dc829fa2-fd33-4ea0-b583-cdbec3025508.mov
 
+## Homework answers
+
+### Inheritance
+
+Inheritance is a process that allows creating new classes based on existing ones. With inheritance, a new class can inherit properties and methods from another class, which makes coding easier and more organized. This allows for more efficient and less error-prone program development.
+
+
+### Polymorphism
+
+Polymorphism allows classes to share the same method names, but these methods can have different implementations. This enables programmers to write code that can work with different types of objects without having to write specific code for each type.
+
+There are two types of polymorphism: static and dynamic. Static polymorphism pertains to method overloading, where the same method is used for different types of inputs. Dynamic polymorphism pertains to method overriding, where the same method is used for different classes.
+
+
+### Generics
+
+Generics allow writing code that can work with different types of data. Generic classes and methods are very useful for writing general-purpose code that can work with various data types. This enables writing code that is much more flexible.
