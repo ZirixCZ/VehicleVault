@@ -10,8 +10,6 @@ services:
       POSTGRES_USER: vehicleadmin
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: vehicles
-    volumes:
-      - ./volumes/database:/var/lib/postgresql/data
 
   adminer:
     image: adminer
