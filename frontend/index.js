@@ -4,10 +4,10 @@ let fetchLocomotives = document.getElementById("fetchLocomotives");
 let fetchCargo = document.getElementById("fetchCargo");
 let fetchWagon = document.getElementById("fetchWagons");
 
-const callApi = (vehicle, endpoint) => {
+const callApi = (vehicle, endpoint, type, method, parameters = "") => {
   console.log(vehicle, endpoint);
-  fetch(`http://127.0.0.1:8080/add${endpoint}`, {
-    method: "POST",
+  fetch(`http://127.0.0.1:8080/${type}${endpoint}/${parameters}`, {
+    method: method,
     headers: {
       "Content-Type": "application/json",
     },
@@ -29,6 +29,7 @@ const getValues = () => [
     pullPower: document.getElementById("pullPower").value,
     capacity: document.getElementById("capacity").value,
     maxCarryWeight: document.getElementById("maxCarryWeight").value,
+    deleteUIC: document.getElementById("deleteUIC").value,
   },
 ];
 
@@ -58,12 +59,17 @@ document.querySelectorAll('input[type="radio"]').forEach((button, i) => {
 });
 
 // Add a new vehicle on click
-document
-  .getElementById("addVehicleBtn")
-  .addEventListener("click", function (e) {
-    e.preventDefault();
-    addVehicle(getValues());
-  });
+document.getElementById("submitBtn").addEventListener("click", function (e) {
+  e.preventDefault();
+  const values = getValues();
+  for (let i = 0; i < values.length; i++) {
+    if (values[i].deleteUIC) {
+      removeVehicle(values);
+      return;
+    }
+  }
+  addVehicle(values);
+});
 
 // Add a new vehicle on file upload
 document
@@ -85,6 +91,67 @@ document
 
     reader.readAsText(event.target.files[0]);
   });
+
+function removeVehicle(vehicle) {
+  let endpoint;
+  let payload = [];
+  if (type.locomotive) {
+    for (let i = 0; i < vehicle.length; i++) {
+      if (!vehicle[i].deleteUIC) {
+        alert("invalid locomotive");
+        return;
+      }
+      payload.push({
+        deleteUIC: vehicle[i].deleteUIC,
+      });
+    }
+    endpoint = "Locomotive";
+  } else if (type.cargo) {
+    for (let i = 0; i < vehicle.length; i++) {
+      if (!vehicle[i].deleteUIC) {
+        alert("invalid cargo");
+        return;
+      }
+      payload.push({
+        deleteUIC: vehicle[i].deleteUIC,
+      });
+    }
+    endpoint = "Cargo";
+  } else if (type.wagon) {
+    for (let i = 0; i < vehicle.length; i++) {
+      if (!vehicle[i].deleteUIC) {
+        alert("invalid wagon");
+        return;
+      }
+      payload.push({
+        deleteUIC: vehicle[i].deleteUIC,
+      });
+    }
+    endpoint = "Wagon";
+  } else if (vehicle.bulkType.value === "Locomotive") {
+    for (let i = 0; i < vehicle.payload.length; i++) {
+      payload.push({
+        deleteUIC: vehicle.payload[i].deleteUIC,
+      });
+    }
+    endpoint = "Locomotive";
+  } else if (vehicle.bulkType.value === "Wagon") {
+    for (let i = 0; i < vehicle.payload.length; i++) {
+      payload.push({
+        deleteUIC: vehicle.payload[i].deleteUIC,
+      });
+    }
+    endpoint = "Wagon";
+  } else if (vehicle.bulkType.value === "Cargo") {
+    for (let i = 0; i < vehicle.payload.length; i++) {
+      payload.push({
+        deleteUIC: vehicle.payload[i].deleteUIC,
+      });
+    }
+    endpoint = "Cargo";
+  }
+  callApi(JSON.stringify(payload), endpoint, "delete", "DELETE");
+}
 
 // Add vehicle function
 function addVehicle(vehicle) {
@@ -184,7 +251,7 @@ function addVehicle(vehicle) {
     endpoint = "Cargo";
   }
 
-  callApi(JSON.stringify(payload), endpoint);
+  callApi(JSON.stringify(payload), endpoint, "add", "POST");
 }
 
 let vehicles = [];

@@ -1,149 +1,100 @@
 <html>
-  <head>
-    <title>VehicleVault</title>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div id="fetchContainer">
-        <table id="vehicleList"></table>
+
+<head>
+  <title>VehicleVault</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div id="fetchContainer">
+      <div>
         <button type="button" class="btn btn-primary" id="fetchLocomotives">locomotives</button>
         <button type="button" class="btn btn-primary" id="fetchCargo">cargo</button>
         <button type="button" class="btn btn-primary" id="fetchWagons">wagons</button>
       </div>
-      <div>
-        <form>
-          <div>
-           <label><b>Required</b></label>
-            <div class="form-group needs-validation" novalidate>
-              <label for="exampleInputEmail1">uic</label>
-              <input
-                type="text"
-                class="form-control"
-                id="uicInput"
-                placeholder="123456789012"
-                required
-              />
-              <small id="uicHelp" class="form-text text-muted"
-                >12 characters long valid UIC</small
-              >
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">length</label>
-              <input
-                type="text"
-                class="form-control"
-                id="lengthInput"
-                placeholder="meters"
-                required
-              />
-              <div class="invalid-feedback">Please fill it up correctly.</div>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">max. speed</label>
-              <input
-                type="text"
-                class="form-control"
-                id="speedInput"
-                placeholder="km/h"
-                required
-              />
-            </div>
+      <table id="vehicleList"></table>
+    </div>
+    <div class="form-container">
+      <form>
+        <div>
+          <label><b>Required</b></label>
+          <div class="form-group needs-validation" novalidate>
+            <label for="exampleInputEmail1">uic</label>
+            <input type="text" class="form-control" id="uicInput" placeholder="123456789012" required />
+            <small id="uicHelp" class="form-text text-muted">12 characters long valid UIC</small>
           </div>
-          <div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">length</label>
+            <input type="text" class="form-control" id="lengthInput" placeholder="meters" required />
+            <div class="invalid-feedback">Please fill it up correctly.</div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">max. speed</label>
+            <input type="text" class="form-control" id="speedInput" placeholder="km/h" required />
+          </div>
+        </div>
+        <div>
           <label><b>Locomotive</b></label>
-            <div class="form-group">
-              <label for="exampleInputPassword1">loc. type</label>
-              <input
-                type="text"
-                class="form-control"
-                id="locomotiveType"
-                placeholder="electric"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">power</label>
-              <input
-                type="text"
-                class="form-control"
-                id="power"
-                placeholder="1 000 kW"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">pull power</label>
-              <input
-                type="text"
-                class="form-control"
-                id="pullPower"
-                placeholder="1 000 kW"
-                required
-              />
-            </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">loc. type</label>
+            <input type="text" class="form-control" id="locomotiveType" placeholder="electric" required />
           </div>
-          <div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">power</label>
+            <input type="text" class="form-control" id="power" placeholder="1 000 kW" required />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">pull power</label>
+            <input type="text" class="form-control" id="pullPower" placeholder="1 000 kW" required />
+          </div>
+        </div>
+        <div>
           <label><b>Wagon</b></label>
           <div class="form-group">
             <label for="exampleInputPassword1">capacity</label>
-            <input
-              type="text"
-              class="form-control"
-              id="capacity"
-              placeholder="68 os."
-              required
-            />
+            <input type="text" class="form-control" id="capacity" placeholder="68 os." required />
           </div>
           <label><b>Cargo</b></label>
           <div class="form-group">
             <label for="exampleInputPassword1">maxCarryWeight</label>
-            <input
-              type="text"
-              class="form-control"
-              id="maxCarryWeight"
-              placeholder="10 000 kg"
-              required
-            />
+            <input type="text" class="form-control" id="maxCarryWeight" placeholder="10 000 kg" required />
+            <label><b>Delete</b></label>
+            <div class="form-group">
+              <label for="exampleInputUIC">uic to delete</label>
+              <input type="text" class="form-control" id="deleteUIC" placeholder="123456789012" required />
+            </div>
           </div>
           <div>
-          <button type="submit" class="btn btn-primary" id="addVehicleBtn">
-            Submit
-          </button>
-          <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="locomotiveRadio">
-                <label class="form-check-label" for="flexRadioDefault1">Locomotive</label>
-        </div>
-        <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="cargoRadio" checked>
-                <label class="form-check-label" for="flexRadioDefault2">Cargo</label>
-        </div>
-        <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="wagonRadio" checked>
-                <label class="form-check-label" for="flexRadioDefault2">Wagon</label>
-        </div>
-        <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="default" checked>
-                <label class="form-check-label" for="flexRadioDefault2">Upload</label>
-        </div>
-          <div class="form-group">
-            <label>or upload a file</label>
-            <input
-              type="file"
-              class="form-control-file"
-              id="fileInput"
-              name="fileInput"
-              accept="json/*"
-            />
-          </div>
-        </form>
-      </div>
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+              Submit
+            </button>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="locomotiveRadio">
+              <label class="form-check-label" for="flexRadioDefault1">Locomotive</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="cargoRadio" checked>
+              <label class="form-check-label" for="flexRadioDefault2">Cargo</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="wagonRadio" checked>
+              <label class="form-check-label" for="flexRadioDefault2">Wagon</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="default" checked>
+              <label class="form-check-label" for="flexRadioDefault2">Upload</label>
+            </div>
+            <div class="form-group">
+              <label>or upload a file</label>
+              <input type="file" class="form-control-file" id="fileInput" name="fileInput" accept="json/*" />
+            </div>
+      </form>
     </div>
-  </body>
-  <script src="validate.js"></script>
-  <script src="index.js"></script>
+  </div>
+</body>
+<script src="validate.js"></script>
+<script src="index.js"></script>
+
 </html>

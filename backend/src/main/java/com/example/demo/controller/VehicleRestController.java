@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 @CrossOrigin(origins = "*")
@@ -55,18 +56,27 @@ public class VehicleRestController {
         return wagonService.fetchVehicleList();
     }
 
-    @DeleteMapping("/deleteLocomotive/{id}")
-    public void deleteLocomotive(@PathVariable int id) {
-        locomotiveService.deleteByUIC(id);
+    @DeleteMapping("/deleteLocomotive/")
+    public void deleteLocomotive(@RequestBody List<Map<String, String>> uicList) {
+        for (Map<String, String> uicMap : uicList) {
+            int uic = Integer.parseInt(uicMap.get("deleteUIC"));
+            locomotiveService.deleteByUIC(uic);
+        }
     }
 
-    @DeleteMapping("/deleteCargo/{id}")
-    public void deleteCargo(@PathVariable int id) {
-        cargoService.deleteByUIC(id);
+    @DeleteMapping("/deleteCargo")
+    public void deleteCargo(@RequestBody List<Map<String, String>> uicList) {
+        for (Map<String, String> uicMap : uicList) {
+            int uic = Integer.parseInt(uicMap.get("deleteUIC"));
+            cargoService.deleteByUIC(uic);
+        }
     }
 
-    @DeleteMapping("/deleteWagon/{id}")
-    public void deleteWagon(@PathVariable int id) {
-        wagonService.deleteByUIC(id);
+    @DeleteMapping("/deleteWagon")
+    public void deleteWagon(@RequestBody List<Map<String, String>> uicList) {
+        for (Map<String, String> uicMap : uicList) {
+            int uic = Integer.parseInt(uicMap.get("deleteUIC"));
+            wagonService.deleteByUIC(uic);
+        }
     }
 }
