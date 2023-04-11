@@ -10,22 +10,21 @@ import java.util.List;
 @Service
 public class LocomotiveService implements LocomotiveInterface {
 
-        @Autowired
-        private LocomotiveRepository locomotiveRepository;
+    @Autowired
+    private LocomotiveRepository locomotiveRepository;
 
-        @Autowired
-        public List<Locomotive> saveVehicle(List<Locomotive> vehicle) {
-            return locomotiveRepository.saveAll(vehicle);
-        }
+    @Autowired
+    public List<Locomotive> saveVehicle(List<Locomotive> vehicle) {
+        return locomotiveRepository.saveAll(vehicle);
+    }
 
-        @Override public List<Locomotive> fetchVehicleList()
-        {
-            return locomotiveRepository.findAll();
-        }
+    @Override
+    public List<Locomotive> fetchVehicleList() {
+        return locomotiveRepository.findAll();
+    }
 
-        public void deleteVehicleByUIC(int id)
-        {
-            locomotiveRepository.deleteById(id);
-        }
+    public void deleteByUIC(int uic) {
+        locomotiveRepository.deleteByUIC(uic);
+    }
 
 }

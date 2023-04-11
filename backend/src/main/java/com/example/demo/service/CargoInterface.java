@@ -10,5 +10,5 @@ public interface CargoInterface {
 
     List<Cargo> fetchVehicleList();
 
-    void deleteVehicleByUIC(int id);
+    void deleteByUIC(int id);
 }

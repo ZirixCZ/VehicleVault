@@ -11,23 +11,20 @@ import java.util.List;
 
 @Service
 public class WagonService implements WagonInterface {
+    @Autowired
+    private WagonRepository wagonRepository;
 
-        @Autowired
-        private WagonRepository wagonRepository;
+    @Autowired
+    public List<Wagon> saveVehicle(List<Wagon> vehicle) {
+        return wagonRepository.saveAll(vehicle);
+    }
 
-        @Autowired
-        public List<Wagon> saveVehicle(List<Wagon> vehicle) {
-            return wagonRepository.saveAll(vehicle);
-        }
+    @Override
+    public List<Wagon> fetchVehicleList() {
+        return wagonRepository.findAll();
+    }
 
-        @Override public List<Wagon> fetchVehicleList()
-        {
-            return wagonRepository.findAll();
-        }
-
-        public void deleteVehicleByUIC(int id)
-        {
-            wagonRepository.deleteById(id);
-        }
-
+    public void deleteByUIC(int uic) {
+        wagonRepository.deleteByUIC(uic);
+    }
 }

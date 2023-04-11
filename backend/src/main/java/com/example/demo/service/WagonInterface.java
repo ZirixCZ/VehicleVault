@@ -9,5 +9,5 @@ public interface WagonInterface {
 
     List<Wagon> fetchVehicleList();
 
-    void deleteVehicleByUIC(int id);
+    void deleteByUIC(int id);
 }

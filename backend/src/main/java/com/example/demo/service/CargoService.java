@@ -12,22 +12,21 @@ import java.util.List;
 @Service
 public class CargoService implements CargoInterface {
 
-        @Autowired
-        private CargoRepository cargoRepository;
+    @Autowired
+    private CargoRepository cargoRepository;
 
-        @Autowired
-        public List<Cargo> saveVehicle(List<Cargo> vehicle) {
-            return cargoRepository.saveAll(vehicle);
-        }
+    @Autowired
+    public List<Cargo> saveVehicle(List<Cargo> vehicle) {
+        return cargoRepository.saveAll(vehicle);
+    }
 
-        @Override public List<Cargo> fetchVehicleList()
-        {
-            return cargoRepository.findAll();
-        }
+    @Override
+    public List<Cargo> fetchVehicleList() {
+        return cargoRepository.findAll();
+    }
 
-        public void deleteVehicleByUIC(int id)
-        {
-            cargoRepository.deleteById(id);
-        }
 
+    public void deleteByUIC(int uic) {
+        cargoRepository.deleteByUIC(uic);
+    }
 }

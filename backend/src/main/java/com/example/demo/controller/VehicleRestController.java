@@ -54,4 +54,19 @@ public class VehicleRestController {
     public List<Wagon> fetchWagons() {
         return wagonService.fetchVehicleList();
     }
+
+    @DeleteMapping("/deleteLocomotive/{id}")
+    public void deleteLocomotive(@PathVariable int id) {
+        locomotiveService.deleteByUIC(id);
+    }
+
+    @DeleteMapping("/deleteCargo/{id}")
+    public void deleteCargo(@PathVariable int id) {
+        cargoService.deleteByUIC(id);
+    }
+
+    @DeleteMapping("/deleteWagon/{id}")
+    public void deleteWagon(@PathVariable int id) {
+        wagonService.deleteByUIC(id);
+    }
 }

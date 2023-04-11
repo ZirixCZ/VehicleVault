@@ -9,5 +9,6 @@ public interface LocomotiveInterface {
 
     List<Locomotive> fetchVehicleList();
 
-    void deleteVehicleByUIC(int id);
+    void deleteByUIC(int id);
+
 }
